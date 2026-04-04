@@ -1,0 +1,1 @@
+# console + file logging (Level 4)
