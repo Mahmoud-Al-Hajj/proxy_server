@@ -9,7 +9,6 @@ from handler import handle_client
 def start_proxy():
     """Create the server socket and accept incoming client connections."""
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind((PROXY_HOST, PROXY_PORT))
     server_socket.listen(10)
 
