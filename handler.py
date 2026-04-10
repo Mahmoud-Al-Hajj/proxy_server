@@ -21,8 +21,9 @@ def handle_client(client_socket, client_address):
             return
 
         log(f"Request received at {datetime.datetime.now()}")
-        raw_request = raw_data.decode('utf-8', errors='replace')
+        raw_request = raw_data.decode('utf-8', errors='replace') # decode bytes to string, replace errors
 
+#extract the HTTP method (GET), hostname, port, and request path from the raw string.
         try:
             method, host, port, path = parse_request(raw_request)
         except ValueError as e:
@@ -32,6 +33,7 @@ def handle_client(client_socket, client_address):
 
         log(f"URL: http://{host}:{port}{path}")
 
+#  open a socket to the real web server, send the HTTP request, and get the response.
         try:
             response = fetch_from_server(host, port, method, path)
         except Exception as e:

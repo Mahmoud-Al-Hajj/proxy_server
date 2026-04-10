@@ -12,7 +12,7 @@ def parse_request(raw_request):
     lines = raw_request.split('\r\n')
     request_line = lines[0]           # e.g. "GET http://example.com/ HTTP/1.1"
     parts = request_line.split(' ')   # ["GET", "http://example.com/", "HTTP/1.1"]
-
+                                      #[  0 ,                  1   ,        2    ]
     if len(parts) < 3:
         raise ValueError(f"Malformed request line: {request_line}")
 

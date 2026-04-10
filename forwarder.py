@@ -21,8 +21,8 @@ def fetch_from_server(host, port, method, path):
     server_socket.connect((host, port))
     server_socket.sendall(request.encode())
 
-    # Read the full response in chunks
-    response = b''
+    # Read the full response
+    response = b'' #b is bytes
     while True:
         chunk = server_socket.recv(BUFFER_SIZE)
         if not chunk:
