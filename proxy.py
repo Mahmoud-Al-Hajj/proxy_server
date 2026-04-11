@@ -28,9 +28,12 @@ def start_proxy():
             )
             thread.daemon = True   # thread dies immediately intead of waiting to finish.
             thread.start()
-# Client A connects → thread spawns for A → proxy immediately accepts Client B → both handled in parallel
 
     except KeyboardInterrupt:
         log("Proxy stopped.")
     finally:
         server_socket.close()
+
+
+if __name__ == '__main__':
+    start_proxy()

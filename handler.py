@@ -20,10 +20,9 @@ def handle_client(client_socket, client_address):
         if not raw_data:
             return
 
-        log(f"Request received at {datetime.datetime.now()}")
-        raw_request = raw_data.decode('utf-8', errors='replace') # decode bytes to string, replace errors
+        raw_request = raw_data.decode('utf-8', errors='replace')
+        log(f"[{client_ip}:{client_port}] Request received | {raw_request.splitlines()[0]}")
 
-#extract the HTTP method (GET), hostname, port, and request path from the raw string.
         try:
             method, host, port, path = parse_request(raw_request)
         except ValueError as e:
@@ -31,19 +30,22 @@ def handle_client(client_socket, client_address):
             client_socket.sendall(b"HTTP/1.0 400 Bad Request\r\n\r\nBad Request\r\n")
             return
 
-        log(f"URL: http://{host}:{port}{path}")
+        log(f"[{client_ip}:{client_port}] Request sent: http://{host}:{port}{path} (method: {method})")
 
 #  open a socket to the real web server, send the HTTP request, and get the response.
         try:
             response = fetch_from_server(host, port, method, path)
         except Exception as e:
-            log(f"Could not reach {host}: {e}")
+            log(f"[{client_ip}:{client_port}] Could not reach {host}: {e}")
             client_socket.sendall(b"HTTP/1.0 502 Bad Gateway\r\n\r\nBad Gateway\r\n")
             return
 
-        log(f"Response received: {len(response)} bytes")
+        response_str = response.decode('utf-8', errors='replace')
+        status_line = response_str.splitlines()[0] # only show "HTTP/1.0 200 OK"
+        log(f"[{client_ip}:{client_port}] Response received | { status_line }")
+        
         client_socket.sendall(response)
-        log(f"Response sent at {datetime.datetime.now()}")
+        log(f"[{client_ip}:{client_port}] Response sent | {status_line}")
 
     except Exception as e:
         log(f"Unexpected error: {e}")
