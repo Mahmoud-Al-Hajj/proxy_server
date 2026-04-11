@@ -45,6 +45,7 @@ def handle_client(client_socket, client_address):
         log(f"[{client_ip}:{client_port}] Response received | { status_line }")
         
         client_socket.sendall(response)
+        
         log(f"[{client_ip}:{client_port}] Response sent | {status_line}")
 
     except Exception as e:
