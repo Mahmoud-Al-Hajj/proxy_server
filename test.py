@@ -1,5 +1,4 @@
 # handler.py - Handles the full lifecycle of one client connection
-# receive request → parse → check cache → fetch if needed → send response → close connection
 
 import datetime
 from config import BUFFER_SIZE
