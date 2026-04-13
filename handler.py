@@ -20,18 +20,18 @@ def handle_client(client_socket, client_address):
     log(f"Connection from {client_id}")
 
     try:
-        raw_data = client_socket.recv(BUFFER_SIZE)
-        if not raw_data:
+        data = client_socket.recv(BUFFER_SIZE)
+        if not data:
             return
 
-        raw_request = raw_data.decode('utf-8', errors='replace')
-        request_line = raw_request.split('\r\n')[0]
+        request = data.decode('utf-8', errors='replace')
+        request_line = request.split('\r\n')[0]
 
         log(f"[{client_id}] Request received | {request_line}")
 
         # ── Parse request ──────────────────────────────
         try:
-            method, host, port, path = parse_request(raw_request)
+            method, host, port, path = parse_request(request)
         except ValueError as e:
             log(f"[{client_id}] Bad request: {e}")
             client_socket.sendall(b"HTTP/1.0 400 Bad Request\r\n\r\nBad Request\r\n")
