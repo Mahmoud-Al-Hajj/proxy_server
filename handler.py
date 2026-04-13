@@ -45,6 +45,7 @@ def handle_client(client_socket, client_address):
         if cached_response:
             log(f"[{client_id}] Cache HIT | {url}")
             client_socket.sendall(cached_response)
+            log(f"[{client_id}] Response sent from cache | {url}")
             return
 
         log(f"[{client_id}] Cache MISS | {url}")
