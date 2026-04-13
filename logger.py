@@ -3,7 +3,6 @@
 
 import datetime
  
- 
 def log(message):
     """Print a timestamped message to the console."""
     timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
