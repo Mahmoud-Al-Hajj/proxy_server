@@ -20,3 +20,5 @@ BLOCKED_IPS = [
 
 LOG_FILE = 'proxy.log'
  
+ADMIN_PORT     = 9000
+ADMIN_PASSWORD = 'admin123' 

@@ -5,6 +5,7 @@ import threading
 from config import PROXY_HOST, PROXY_PORT
 from logger import log
 from handler import handle_client
+from admin import start_admin
 
 
 def start_proxy():
@@ -12,6 +13,8 @@ def start_proxy():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((PROXY_HOST, PROXY_PORT))
     server_socket.listen(10)
+    
+    start_admin()
 
     log(f"Proxy running on {PROXY_HOST}:{PROXY_PORT}")
     log("Press Ctrl+C to stop.\n")

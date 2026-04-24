@@ -52,6 +52,15 @@ def store(url, response):
         cache[url] = {'response': response, 'timestamp': now}
 
 
+def clear():
+    with lock:
+        cache.clear()
+
 def size():
     with lock:
         return len(cache)
+
+def keys():
+    """Return all cached URLs."""
+    with lock:
+        return list(cache.keys())
