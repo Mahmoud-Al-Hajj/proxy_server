@@ -8,7 +8,7 @@ from parser import parse_request
 from forwarder import fetch_from_server
 from filter import is_blocked_ip, is_blocked_host, BLOCK_RESPONSE
 import cache
-import stats
+import Stats
 
 def handle_client(client_socket, client_address):
     """
@@ -21,9 +21,9 @@ def handle_client(client_socket, client_address):
     log(f"Connection from {client_id}")
 
     try:
-        stats.record_request()
+        Stats.record_request()
         if is_blocked_ip(client_ip):
-            stats.record_blocked()
+            Stats.record_blocked()
             log(f"[{client_id}] BLOCKED IP | {datetime.datetime.now()} | connection refused")
             client_socket.sendall(BLOCK_RESPONSE)
             return
@@ -47,7 +47,7 @@ def handle_client(client_socket, client_address):
             return
 
         if is_blocked_host(host):
-            stats.record_blocked()
+            Stats.record_blocked()
             log(f"[{client_id}] BLOCKED HOST      | {datetime.datetime.now()} | {host}")
             client_socket.sendall(BLOCK_RESPONSE)
             return
@@ -58,7 +58,7 @@ def handle_client(client_socket, client_address):
         cached_response = cache.get(url)
 
         if cached_response:
-            stats.record_hit()
+            Stats.record_hit()
 
             log(f"[{client_id}] Cache HIT | {url}")
             client_socket.sendall(cached_response)

@@ -5,7 +5,7 @@ import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from config import ADMIN_PORT, ADMIN_PASSWORD, LOG_FILE
 import cache
-import stats
+import Stats
 from filter import get_blocked_hosts, add_blocked_host
 
 
@@ -97,7 +97,7 @@ class AdminHandler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def _serve_stats(self):
-        s = stats.get()
+        s = Stats.get()
         s['cache_size'] = cache.size()
         s['cache_keys'] = cache.keys()
         s['blacklist'] = get_blocked_hosts()

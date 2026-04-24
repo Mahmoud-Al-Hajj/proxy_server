@@ -5,7 +5,7 @@ import threading
 from config import PROXY_HOST, PROXY_PORT
 from logger import log
 from handler import handle_client
-from admin import start_admin
+from Admin import start_admin
 
 
 def start_proxy():
