@@ -11,4 +11,4 @@ def log(message):
     print(line)
 
     with open(LOG_FILE, 'a') as f:
-    f.write(line + '\n')
+        f.write(line + '\n')
