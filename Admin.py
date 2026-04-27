@@ -2,6 +2,7 @@
 
 import threading
 import json
+import base64
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from config import ADMIN_PORT, ADMIN_PASSWORD, LOG_FILE
 import cache
@@ -9,8 +10,7 @@ import Stats
 from filter import get_blocked_hosts, add_blocked_host
 
 
-def _read_logs(lines=50):
-    """Return the last N lines from the log file."""
+def read_logs(lines=50):
     try:
         with open(LOG_FILE, 'r') as f:
             all_lines = f.readlines()
@@ -22,7 +22,7 @@ def _read_logs(lines=50):
 class AdminHandler(BaseHTTPRequestHandler):
     """Handles all HTTP requests to the admin panel."""
 
-    def _check_auth(self):
+    def check_auth(self):
         """
         Check HTTP Basic Auth header.
         Returns True if the password matches, False otherwise.
@@ -31,14 +31,12 @@ class AdminHandler(BaseHTTPRequestHandler):
         if not auth_header.startswith('Basic '):
             return False
 
-        import base64
-        encoded = auth_header[len('Basic '):]
+        encoded = auth_header[6:]
         decoded = base64.b64decode(encoded).decode('utf-8')
-        # decoded looks like "admin:password"
-        _, password = decoded.split(':', 1)
+        password = decoded.split(':', 1)[1]
         return password == ADMIN_PASSWORD
 
-    def _require_auth(self):
+    def require_auth(self):
         """Send a 401 response that prompts the browser for a password."""
         self.send_response(401)
         self.send_header('WWW-Authenticate', 'Basic realm="Proxy Admin"')
@@ -51,23 +49,23 @@ class AdminHandler(BaseHTTPRequestHandler):
         pass
 
     def do_GET(self):
-        if not self._check_auth():
-            self._require_auth()
+        if not self.check_auth():
+            self.require_auth()
             return
 
         if self.path == '/':
-            self._serve_dashboard()
+            self.serve_dashboard()
         elif self.path == '/api/stats':
-            self._serve_stats()
+            self.serve_stats()
         elif self.path == '/api/logs':
-            self._serve_logs()
+            self.serve_logs()
         else:
             self.send_response(404)
             self.end_headers()
 
     def do_POST(self):
-        if not self._check_auth():
-            self._require_auth()
+        if not self.check_auth():
+            self.require_auth()
             return
 
         length = int(self.headers.get('Content-Length', 0))
@@ -76,41 +74,41 @@ class AdminHandler(BaseHTTPRequestHandler):
 
         if self.path == '/api/cache/clear':
             cache.clear()
-            self._json_response({'ok': True, 'message': 'Cache cleared'})
+            self.json_response({'ok': True, 'message': 'Cache cleared'})
 
         elif self.path == '/api/blacklist/add':
             host = data.get('host', '').strip()
             if host:
                 add_blocked_host(host)
-                self._json_response({'ok': True, 'message': f'{host} blocked'})
+                self.json_response({'ok': True, 'message': f'{host} blocked'})
             else:
-                self._json_response({'ok': False, 'message': 'No host provided'})
+                self.json_response({'ok': False, 'message': 'No host provided'})
         else:
             self.send_response(404)
             self.end_headers()
 
-    def _json_response(self, data):
+    def json_response(self, data):
         body = json.dumps(data).encode()
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
         self.wfile.write(body)
 
-    def _serve_stats(self):
+    def serve_stats(self):
         s = Stats.get()
         s['cache_size'] = cache.size()
         s['cache_keys'] = cache.keys()
         s['blacklist'] = get_blocked_hosts()
-        self._json_response(s)
+        self.json_response(s)
 
-    def _serve_logs(self):
-        body = _read_logs().encode()
+    def serve_logs(self):
+        body = read_logs().encode()
         self.send_response(200)
         self.send_header('Content-Type', 'text/plain')
         self.end_headers()
         self.wfile.write(body)
 
-    def _serve_dashboard(self):
+    def serve_dashboard(self):
         """Serve the full admin HTML page."""
         html = """<!DOCTYPE html>
 <html>
