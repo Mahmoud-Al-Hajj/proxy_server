@@ -150,6 +150,9 @@ class AdminHandler(BaseHTTPRequestHandler):
     .hint { font-size: 11px; color: #aaa; margin-top: 6px; }
     #msg { font-size: 12px; color: #0c447c; min-height: 16px; margin-top: 6px; }
     .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .perf-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+    .bar-wrap { background: #f0f0f0; border-radius: 3px; height: 12px; margin-bottom: 8px; }
+    .bar { height: 100%; border-radius: 3px; }
   </style>
 </head>
 <body>
@@ -165,7 +168,7 @@ class AdminHandler(BaseHTTPRequestHandler):
 <div class="grid-4" id="metrics">
   <div class="metric"><div class="metric-label">Total requests</div><div class="metric-val" id="m-total">—</div></div>
   <div class="metric"><div class="metric-label">Cache hits</div><div class="metric-val" id="m-hits">—</div></div>
-  <div class="metric"><div class="metric-label">Cache entries</div><div class="metric-val" id="m-cache">—</div></div>
+  <div class="metric"><div class="metric-label">Cache misses</div><div class="metric-val" id="m-misses">—</div></div>
   <div class="metric"><div class="metric-label">Blocked</div><div class="metric-val" style="color:#a32d2d" id="m-blocked">—</div></div>
 </div>
 
@@ -179,21 +182,7 @@ class AdminHandler(BaseHTTPRequestHandler):
   </div>
   <div id="p-bars"></div>
   <div class="hint" id="p-hint"></div>
-  <style>
-    .perf-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
-    .bar-wrap { background: #f0f0f0; border-radius: 3px; height: 12px; margin-bottom: 8px; }
-    .bar { height: 100%; border-radius: 3px; }
-  </style>
-</div>
 
-<div class="grid-2">
-  <div class="card">
-    <div class="card-header">
-      <div class="card-title">Cache contents</div>
-      <button class="danger" onclick="clearCache()">Clear cache</button>
-    </div>
-    <div class="cache-list" id="cache-list">Loading...</div>
-    <div class="hint" id="cache-hint"></div>
     <div id="msg"></div>
   </div>
 
@@ -222,7 +211,6 @@ class AdminHandler(BaseHTTPRequestHandler):
     const d = await r.json();
     document.getElementById('m-total').textContent   = d.total;
     document.getElementById('m-hits').textContent    = d.hits;
-    document.getElementById('m-cache').textContent   = d.cache_size;
     document.getElementById('m-blocked').textContent = d.blocked;
     document.getElementById('port-info').textContent = 'Proxy admin · live stats';
 
@@ -274,6 +262,7 @@ class AdminHandler(BaseHTTPRequestHandler):
     document.getElementById('p-hit').textContent     = d.avg_hit_ms  !== null ? d.avg_hit_ms  + ' ms' : '—';
     document.getElementById('p-speedup').textContent = d.speedup     !== null ? d.speedup + '×'       : '—';
     document.getElementById('p-saved').textContent   = d.total_saved_ms > 0   ? (d.total_saved_ms / 1000).toFixed(2) + ' s' : '—';
+    document.getElementById('m-misses').textContent  = d.miss_count || 0;
 
     const bars = document.getElementById('p-bars');
     if (d.avg_miss_ms && d.avg_hit_ms) {

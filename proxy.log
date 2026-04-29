@@ -73,3 +73,141 @@ Proxy-Connection: Keep-Alive
 
 [2026-04-29 17:46:32] [127.0.0.1:62851] BLOCKED HOST      | 2026-04-29 17:46:32.501262 | facebook.com
 [2026-04-29 17:46:32] [127.0.0.1:62851] Connection closed
+[2026-04-29 17:48:40] Proxy running on 0.0.0.0:3128
+[2026-04-29 17:48:40] Press Ctrl+C to stop.
+
+[2026-04-29 17:48:53] Connection from 127.0.0.1:64233
+[2026-04-29 17:48:53] [127.0.0.1:64233] Request received  | 2026-04-29 17:48:53.793962 | GET http://facebook.com/ HTTP/1.1
+[2026-04-29 17:48:53] [127.0.0.1:64233] Full request:
+GET http://facebook.com/ HTTP/1.1
+Host: facebook.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 17:48:53] [127.0.0.1:64233] BLOCKED HOST      | 2026-04-29 17:48:53.797195 | facebook.com
+[2026-04-29 17:48:53] [127.0.0.1:64233] Connection closed
+[2026-04-29 17:49:01] Connection from 127.0.0.1:51672
+[2026-04-29 17:49:01] [127.0.0.1:51672] Request received  | 2026-04-29 17:49:01.463671 | GET http://facebook.com/ HTTP/1.1
+[2026-04-29 17:49:01] [127.0.0.1:51672] Full request:
+GET http://facebook.com/ HTTP/1.1
+Host: facebook.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 17:49:01] [127.0.0.1:51672] BLOCKED HOST      | 2026-04-29 17:49:01.464674 | facebook.com
+[2026-04-29 17:49:01] [127.0.0.1:51672] Connection closed
+[2026-04-29 17:51:31] Proxy running on 0.0.0.0:3128
+[2026-04-29 17:51:31] Press Ctrl+C to stop.
+
+[2026-04-29 17:52:27] Connection from 127.0.0.1:62313
+[2026-04-29 17:52:27] [127.0.0.1:62313] Request received  | 2026-04-29 17:52:27.060419 | GET http://example.com/ HTTP/1.1
+[2026-04-29 17:52:27] [127.0.0.1:62313] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 17:52:27] [127.0.0.1:62313] Cache MISS        | 2026-04-29 17:52:27.061429 | http://example.com:80/
+[2026-04-29 17:52:27] [127.0.0.1:62313] Request forwarded | 2026-04-29 17:52:27.062428 | GET http://example.com:80/
+[2026-04-29 17:52:27] [127.0.0.1:62313] Response received | 2026-04-29 17:52:27.199354 | HTTP/1.1 200 OK (797 bytes)
+[2026-04-29 17:52:27] [127.0.0.1:62313] Response headers:
+HTTP/1.1 200 OK
+Date: Wed, 29 Apr 2026 14:52:25 GMT
+Content-Type: text/html
+Connection: close
+Server: cloudflare
+Last-Modified: Sat, 25 Apr 2026 11:01:06 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 4441
+cf-cache-status: HIT
+CF-RAY: 9f3f21632dca3f1d-MRS
+
+[2026-04-29 17:52:27] [127.0.0.1:62313] Stored in cache   | http://example.com:80/ (cache size: 1)
+[2026-04-29 17:52:27] [127.0.0.1:62313] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-29 17:52:27] [127.0.0.1:62313] Connection closed
+[2026-04-29 17:53:30] Connection from 127.0.0.1:51471
+[2026-04-29 17:53:30] [127.0.0.1:51471] Request received  | 2026-04-29 17:53:30.793040 | GET http://example.com/ HTTP/1.1
+[2026-04-29 17:53:30] [127.0.0.1:51471] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 17:53:30] [127.0.0.1:51471] Cache HIT | http://example.com:80/
+[2026-04-29 17:53:30] [127.0.0.1:51471] Response sent from cache | http://example.com:80/
+[2026-04-29 17:53:30] [127.0.0.1:51471] Connection closed
+[2026-04-29 17:53:32] Connection from 127.0.0.1:51487
+[2026-04-29 17:53:32] [127.0.0.1:51487] Request received  | 2026-04-29 17:53:32.775700 | GET http://example.com/ HTTP/1.1
+[2026-04-29 17:53:32] [127.0.0.1:51487] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 17:53:32] [127.0.0.1:51487] Cache HIT | http://example.com:80/
+[2026-04-29 17:53:32] [127.0.0.1:51487] Response sent from cache | http://example.com:80/
+[2026-04-29 17:53:32] [127.0.0.1:51487] Connection closed
+[2026-04-29 17:55:37] Proxy running on 0.0.0.0:3128
+[2026-04-29 17:55:37] Press Ctrl+C to stop.
+
+[2026-04-29 17:58:16] Connection from 127.0.0.1:59372
+[2026-04-29 17:58:16] [127.0.0.1:59372] Request received  | 2026-04-29 17:58:16.700944 | GET http://example.com/ HTTP/1.1
+[2026-04-29 17:58:16] [127.0.0.1:59372] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 17:58:16] [127.0.0.1:59372] Cache MISS        | 2026-04-29 17:58:16.702453 | http://example.com:80/
+[2026-04-29 17:58:16] [127.0.0.1:59372] Request forwarded | 2026-04-29 17:58:16.703837 | GET http://example.com:80/
+[2026-04-29 17:58:16] [127.0.0.1:59372] Response received | 2026-04-29 17:58:16.889625 | HTTP/1.1 200 OK (797 bytes)
+[2026-04-29 17:58:16] [127.0.0.1:59372] Response headers:
+HTTP/1.1 200 OK
+Date: Wed, 29 Apr 2026 14:58:15 GMT
+Content-Type: text/html
+Connection: close
+Server: cloudflare
+Last-Modified: Sat, 25 Apr 2026 11:01:06 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 4791
+cf-cache-status: HIT
+CF-RAY: 9f3f29ecce4edad4-MRS
+
+[2026-04-29 17:58:16] [127.0.0.1:59372] Stored in cache   | http://example.com:80/ (cache size: 1)
+[2026-04-29 17:58:16] [127.0.0.1:59372] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-29 17:58:16] [127.0.0.1:59372] Connection closed
+[2026-04-29 17:58:21] Connection from 127.0.0.1:56945
+[2026-04-29 17:58:21] [127.0.0.1:56945] Request received  | 2026-04-29 17:58:21.939222 | GET http://example.com/ HTTP/1.1
+[2026-04-29 17:58:21] [127.0.0.1:56945] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 17:58:21] [127.0.0.1:56945] Cache HIT | http://example.com:80/
+[2026-04-29 17:58:21] [127.0.0.1:56945] Response sent from cache | http://example.com:80/
+[2026-04-29 17:58:21] [127.0.0.1:56945] Connection closed
+[2026-04-29 17:58:23] Connection from 127.0.0.1:56951
+[2026-04-29 17:58:23] [127.0.0.1:56951] Request received  | 2026-04-29 17:58:23.716440 | GET http://example.com/ HTTP/1.1
+[2026-04-29 17:58:23] [127.0.0.1:56951] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 17:58:23] [127.0.0.1:56951] Cache HIT | http://example.com:80/
+[2026-04-29 17:58:23] [127.0.0.1:56951] Response sent from cache | http://example.com:80/
+[2026-04-29 17:58:23] [127.0.0.1:56951] Connection closed
+[2026-04-29 18:00:56] Proxy running on 0.0.0.0:3128
+[2026-04-29 18:00:56] Press Ctrl+C to stop.
+
