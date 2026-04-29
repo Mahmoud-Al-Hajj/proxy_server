@@ -2,15 +2,16 @@
 
 import threading
 import json
-import base64
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from config import ADMIN_PORT, ADMIN_PASSWORD, LOG_FILE
 import cache
-import Stats
+import stats
 from filter import get_blocked_hosts, add_blocked_host
+import metrics
 
 
-def read_logs(lines=50):
+def _read_logs(lines=50):
+    """Return the last N lines from the log file."""
     try:
         with open(LOG_FILE, 'r') as f:
             all_lines = f.readlines()
@@ -22,7 +23,7 @@ def read_logs(lines=50):
 class AdminHandler(BaseHTTPRequestHandler):
     """Handles all HTTP requests to the admin panel."""
 
-    def check_auth(self):
+    def _check_auth(self):
         """
         Check HTTP Basic Auth header.
         Returns True if the password matches, False otherwise.
@@ -31,12 +32,14 @@ class AdminHandler(BaseHTTPRequestHandler):
         if not auth_header.startswith('Basic '):
             return False
 
-        encoded = auth_header[6:]
+        import base64
+        encoded = auth_header[len('Basic '):]
         decoded = base64.b64decode(encoded).decode('utf-8')
-        password = decoded.split(':', 1)[1]
+        # decoded looks like "admin:password"
+        _, password = decoded.split(':', 1)
         return password == ADMIN_PASSWORD
 
-    def require_auth(self):
+    def _require_auth(self):
         """Send a 401 response that prompts the browser for a password."""
         self.send_response(401)
         self.send_header('WWW-Authenticate', 'Basic realm="Proxy Admin"')
@@ -45,27 +48,29 @@ class AdminHandler(BaseHTTPRequestHandler):
         self.wfile.write(b'Unauthorized')
 
     def log_message(self, format, *args):
-        """Stops the repetitive HTTP access logs"""
+        """Suppress the default access log noise from http.server."""
         pass
 
     def do_GET(self):
-        if not self.check_auth():
-            self.require_auth()
+        if not self._check_auth():
+            self._require_auth()
             return
 
         if self.path == '/':
-            self.serve_dashboard()
+            self._serve_dashboard()
         elif self.path == '/api/stats':
-            self.serve_stats()
+            self._serve_stats()
         elif self.path == '/api/logs':
-            self.serve_logs()
+            self._serve_logs()
+        elif self.path == '/api/metrics':
+            self._serve_metrics()
         else:
             self.send_response(404)
             self.end_headers()
 
     def do_POST(self):
-        if not self.check_auth():
-            self.require_auth()
+        if not self._check_auth():
+            self._require_auth()
             return
 
         length = int(self.headers.get('Content-Length', 0))
@@ -74,41 +79,44 @@ class AdminHandler(BaseHTTPRequestHandler):
 
         if self.path == '/api/cache/clear':
             cache.clear()
-            self.json_response({'ok': True, 'message': 'Cache cleared'})
+            self._json_response({'ok': True, 'message': 'Cache cleared'})
 
         elif self.path == '/api/blacklist/add':
             host = data.get('host', '').strip()
             if host:
                 add_blocked_host(host)
-                self.json_response({'ok': True, 'message': f'{host} blocked'})
+                self._json_response({'ok': True, 'message': f'{host} blocked'})
             else:
-                self.json_response({'ok': False, 'message': 'No host provided'})
+                self._json_response({'ok': False, 'message': 'No host provided'})
         else:
             self.send_response(404)
             self.end_headers()
 
-    def json_response(self, data):
+    def _json_response(self, data):
         body = json.dumps(data).encode()
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
         self.wfile.write(body)
 
-    def serve_stats(self):
-        s = Stats.get()
+    def _serve_stats(self):
+        s = stats.get()
         s['cache_size'] = cache.size()
         s['cache_keys'] = cache.keys()
         s['blacklist'] = get_blocked_hosts()
-        self.json_response(s)
+        self._json_response(s)
 
-    def serve_logs(self):
-        body = read_logs().encode()
+    def _serve_logs(self):
+        body = _read_logs().encode()
         self.send_response(200)
         self.send_header('Content-Type', 'text/plain')
         self.end_headers()
         self.wfile.write(body)
 
-    def serve_dashboard(self):
+    def _serve_metrics(self):
+        self._json_response(metrics.get_summary())
+
+    def _serve_dashboard(self):
         """Serve the full admin HTML page."""
         html = """<!DOCTYPE html>
 <html>
@@ -241,7 +249,6 @@ class AdminHandler(BaseHTTPRequestHandler):
     loadStats();
   }
 
-
   async function loadMetrics() {
     const r = await fetch('/api/metrics');
     const d = await r.json();
@@ -283,6 +290,6 @@ def start_admin():
     """Start the admin HTTP server in a background daemon thread."""
     server = HTTPServer(('0.0.0.0', ADMIN_PORT), AdminHandler)
     thread = threading.Thread(target=server.serve_forever)
-    thread.daemon = True #dont wait for it to finish when exiting the main program
+    thread.daemon = True
     thread.start()
     print(f"[Admin] Panel running on http://127.0.0.1:{ADMIN_PORT}")

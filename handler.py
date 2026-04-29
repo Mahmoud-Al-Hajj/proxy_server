@@ -9,6 +9,7 @@ from forwarder import fetch_from_server
 from filter import is_blocked_ip, is_blocked_host, BLOCK_RESPONSE
 import cache
 import Stats
+import metrics
 
 def handle_client(client_socket, client_address):
     """
@@ -53,11 +54,15 @@ def handle_client(client_socket, client_address):
             return
             
         url = f"http://{host}:{port}{path}"
-
+   
+      
         # ── CACHE CHECK ────────────────────────────────
+        t_start = time.time()
         cached_response = cache.get(url)
 
-        if cached_response:
+        if cached_response is not None:
+             elapsed_ms = (time.time() - t_start) * 1000
+            metrics.record(url, 'hit', elapsed_ms)
             Stats.record_hit()
 
             log(f"[{client_id}] Cache HIT | {url}")
@@ -70,12 +75,16 @@ def handle_client(client_socket, client_address):
 
 
         # ── FETCH FROM SERVER ──────────────────────────
+        t_start = time.time()
         try:
             response = fetch_from_server(host, port, method, path)
         except Exception as e:
             log(f"[{client_id}] Could not reach {host}: {e}")
             client_socket.sendall(b"HTTP/1.0 502 Bad Gateway\r\n\r\nBad Gateway\r\n")
             return
+            
+        elapsed_ms = (time.time() - t_start) * 1000
+        metrics.record(url, 'miss', elapsed_ms)
 
         status_line = response.split(b'\r\n', 1)[0].decode('utf-8', errors='replace')
         response_headers = response.split(b'\r\n\r\n', 1)[0].decode('utf-8', errors='replace')
