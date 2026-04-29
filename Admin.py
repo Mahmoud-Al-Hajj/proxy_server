@@ -45,7 +45,7 @@ class AdminHandler(BaseHTTPRequestHandler):
         self.wfile.write(b'Unauthorized')
 
     def log_message(self, format, *args):
-        """Suppress the default access log noise from http.server."""
+        """Stops the repetitive HTTP access logs"""
         pass
 
     def do_GET(self):

@@ -4,6 +4,11 @@ import threading
 import config
 
 cache = {}
+# key   → URL
+# value → { response, timestamp, last_used }
+
+
+# Note: with lock means only one thread can run this part of code, others wait
 lock = threading.Lock()
 
 CACHE_TTL = config.CACHE_TTL
@@ -12,10 +17,14 @@ CACHE_MAX_SIZE = config.CACHE_MAX_SIZE
 
 def get(url):
     """
-    Return the cached response for this URL if it exists and is still fresh.
-    Returns None on a cache miss or expired entry.
+    Retrieve cached response if it exists and is still valid.
+
+    Flow:
+    1. Check if entry exists
+    2. Check if expired (TTL)
+    3. Update last_used (LRU behavior)
+    4. Return response
     """
-    # Note: with lock means only one thread can run this part of code, others wait
     with lock:
         entry = cache.get(url)
         if not entry:
@@ -31,26 +40,49 @@ def get(url):
         return entry['response']
 
 
+
 def store(url, response):
     """
-    Save a response in the cache.
-    If the cache is full, evict the oldest entry first.
+    Store a response in cache.
+
+    Behavior:
+    - If exists → update
+    - If full → remove least recently used
+    - Insert new entry
     """
     with lock:
         now = time.time()
 
-        # Update existing
+        # ── UPDATE EXISTING ENTRY ────────────────────
         if url in cache:
-            cache[url] = {'response': response, 'timestamp': now}
+            cache[url] = {
+                'response': response,
+                'timestamp': now,
+                'last_used': now
+            }
             return
 
-        # Evict oldest (first inserted)
         if len(cache) >= CACHE_MAX_SIZE:
-            oldest = next(iter(cache))   # first key in dict
-            cache.pop(oldest, None)
 
-        cache[url] = {'response': response, 'timestamp': now}
+            # Find the least recently used entry manually
+            
+			lru_url = items[0][0]
+			oldest_time = items[0][1]['last_used'] # value of last used of first element
+            
+            {url, (response,timestamp,last_used)}
+            
+            for key, value in cache.items():
+                if value['last_used'] < oldest_time:
+                    oldest_time = value['last_used']
+                    lru_url = key
 
+            cache.pop(lru_url, None)
+
+        cache[url] = {
+            'response': response,
+            'timestamp': now,
+            'last_used': now
+        }
 
 def clear():
     with lock:

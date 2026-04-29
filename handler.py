@@ -36,7 +36,7 @@ def handle_client(client_socket, client_address):
         request_line = request.split('\r\n')[0]
 
         log(f"[{client_id}] Request received  | {datetime.datetime.now()} | {request_line}")
-        log(f"[{client_id}] Full request:\n{raw_request.strip()}\n")
+        log(f"[{client_id}] Full request:\n{request.strip()}\n")
 
         # ── Parse request ──────────────────────────────
         try:
@@ -78,6 +78,7 @@ def handle_client(client_socket, client_address):
             return
 
         status_line = response.split(b'\r\n', 1)[0].decode('utf-8', errors='replace')
+        response_headers = response.split(b'\r\n\r\n', 1)[0].decode('utf-8', errors='replace')
 
         log(f"[{client_id}] Response received | {datetime.datetime.now()} | {status_line} ({len(response)} bytes)")
         log(f"[{client_id}] Response headers:\n{response_headers}\n")
