@@ -26,7 +26,7 @@ def record_blocked():
         blocked += 1
 
 def get():
-    with _lock:
+    with lock:
         return {
             'total':   total_requests,
             'hits':    cache_hits,
