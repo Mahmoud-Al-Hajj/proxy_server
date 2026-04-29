@@ -2,6 +2,7 @@
 # receive request → parse → check cache → fetch if needed → send response → close connection
 
 import datetime
+import time
 from config import BUFFER_SIZE
 from logger import log
 from parser import parse_request
@@ -61,7 +62,7 @@ def handle_client(client_socket, client_address):
         cached_response = cache.get(url)
 
         if cached_response is not None:
-             elapsed_ms = (time.time() - t_start) * 1000
+            elapsed_ms = (time.time() - t_start) * 1000
             metrics.record(url, 'hit', elapsed_ms)
             Stats.record_hit()
 
@@ -82,7 +83,7 @@ def handle_client(client_socket, client_address):
             log(f"[{client_id}] Could not reach {host}: {e}")
             client_socket.sendall(b"HTTP/1.0 502 Bad Gateway\r\n\r\nBad Gateway\r\n")
             return
-            
+
         elapsed_ms = (time.time() - t_start) * 1000
         metrics.record(url, 'miss', elapsed_ms)
 

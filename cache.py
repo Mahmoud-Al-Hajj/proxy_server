@@ -65,11 +65,8 @@ def store(url, response):
         if len(cache) >= CACHE_MAX_SIZE:
 
             # Find the least recently used entry manually
-            
-			lru_url = items[0][0]
-			oldest_time = items[0][1]['last_used'] # value of last used of first element
-            
-            {url, (response,timestamp,last_used)}
+            lru_url = None
+            oldest_time = float('inf')
             
             for key, value in cache.items():
                 if value['last_used'] < oldest_time:
