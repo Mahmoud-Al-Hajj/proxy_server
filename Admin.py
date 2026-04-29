@@ -182,7 +182,16 @@ class AdminHandler(BaseHTTPRequestHandler):
   </div>
   <div id="p-bars"></div>
   <div class="hint" id="p-hint"></div>
+</div>
 
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Cache contents</div>
+      <button class="danger" onclick="clearCache()">Clear cache</button>
+    </div>
+    <div class="cache-list" id="cache-list">Loading...</div>
+    <div class="hint" id="cache-hint"></div>
     <div id="msg"></div>
   </div>
 

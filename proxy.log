@@ -214,3 +214,58 @@ Proxy-Connection: Keep-Alive
 [2026-04-29 18:01:55] Proxy running on 0.0.0.0:3128
 [2026-04-29 18:01:55] Press Ctrl+C to stop.
 
+[2026-04-29 18:02:46] Connection from 127.0.0.1:58810
+[2026-04-29 18:02:46] [127.0.0.1:58810] Request received  | 2026-04-29 18:02:46.460947 | GET http://example.com/ HTTP/1.1
+[2026-04-29 18:02:46] [127.0.0.1:58810] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 18:02:46] [127.0.0.1:58810] Cache MISS        | 2026-04-29 18:02:46.462948 | http://example.com:80/
+[2026-04-29 18:02:46] [127.0.0.1:58810] Request forwarded | 2026-04-29 18:02:46.462948 | GET http://example.com:80/
+[2026-04-29 18:02:46] [127.0.0.1:58810] Response received | 2026-04-29 18:02:46.607320 | HTTP/1.1 200 OK (797 bytes)
+[2026-04-29 18:02:46] [127.0.0.1:58810] Response headers:
+HTTP/1.1 200 OK
+Date: Wed, 29 Apr 2026 15:02:44 GMT
+Content-Type: text/html
+Connection: close
+Server: cloudflare
+Last-Modified: Sat, 25 Apr 2026 11:01:06 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 5061
+cf-cache-status: HIT
+CF-RAY: 9f3f30827ea3f5a9-MRS
+
+[2026-04-29 18:02:46] [127.0.0.1:58810] Stored in cache   | http://example.com:80/ (cache size: 1)
+[2026-04-29 18:02:46] [127.0.0.1:58810] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-29 18:02:46] [127.0.0.1:58810] Connection closed
+[2026-04-29 18:02:47] Connection from 127.0.0.1:58815
+[2026-04-29 18:02:47] [127.0.0.1:58815] Request received  | 2026-04-29 18:02:47.563827 | GET http://example.com/ HTTP/1.1
+[2026-04-29 18:02:47] [127.0.0.1:58815] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 18:02:47] [127.0.0.1:58815] Cache HIT | http://example.com:80/
+[2026-04-29 18:02:47] [127.0.0.1:58815] Response sent from cache | http://example.com:80/
+[2026-04-29 18:02:47] [127.0.0.1:58815] Connection closed
+[2026-04-29 18:02:53] Connection from 127.0.0.1:59493
+[2026-04-29 18:02:53] [127.0.0.1:59493] Request received  | 2026-04-29 18:02:53.287736 | GET http://example.com/ HTTP/1.1
+[2026-04-29 18:02:53] [127.0.0.1:59493] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-29 18:02:53] [127.0.0.1:59493] Cache HIT | http://example.com:80/
+[2026-04-29 18:02:53] [127.0.0.1:59493] Response sent from cache | http://example.com:80/
+[2026-04-29 18:02:53] [127.0.0.1:59493] Connection closed
+[2026-04-29 18:14:33] Proxy running on 0.0.0.0:3128
+[2026-04-29 18:14:33] Press Ctrl+C to stop.
+
