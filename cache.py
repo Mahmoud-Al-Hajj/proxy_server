@@ -66,7 +66,7 @@ def store(url, response):
 
             # Find the least recently used entry manually
             lru_url = None
-            oldest_time = float('inf')
+            oldest_time = float('inf')  # Initialize to infinity; any real timestamp will be smaller
             
             for key, value in cache.items():
                 if value['last_used'] < oldest_time:
