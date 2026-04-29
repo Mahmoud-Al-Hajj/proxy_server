@@ -18,7 +18,17 @@ def parse_request(raw_request):
 
     method = parts[0].upper()
     url    = parts[1]
-
+#-------------------------------------------------------------------------------
+    # CONNECT method: request line is "CONNECT host:443 HTTP/1.1"
+    if method == 'CONNECT':
+        if ':' in url:
+            host, port = url.split(':', 1)
+            port = int(port)
+        else:
+            host = url
+            port = 443
+        return method, host, port, '/'
+#-------------------------------------------------------------------------------
     if method != 'GET':
         raise ValueError(f"Unsupported method: {method}")
 

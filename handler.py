@@ -1,12 +1,11 @@
 # handler.py - Handles the full lifecycle of one client connection
 # receive request → parse → check cache → fetch if needed → send response → close connection
-
 import datetime
 import time
 from config import BUFFER_SIZE
 from logger import log
 from parser import parse_request
-from forwarder import fetch_from_server
+from forwarder import fetch_from_server, tunnel
 from filter import is_blocked_ip, is_blocked_host, BLOCK_RESPONSE
 import cache
 import Stats
@@ -53,7 +52,13 @@ def handle_client(client_socket, client_address):
             log(f"[{client_id}] BLOCKED HOST      | {datetime.datetime.now()} | {host}")
             client_socket.sendall(BLOCK_RESPONSE)
             return
-            
+
+        # ── HTTPS TUNNEL ───────────────────────────────
+        if method == 'CONNECT':
+            log(f"[{client_id}] CONNECT tunnel    | {host}:{port}")
+            tunnel(client_socket, host, port)
+            return
+
         url = f"http://{host}:{port}{path}"
    
       
