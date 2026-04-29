@@ -128,11 +128,11 @@ class AdminHandler(BaseHTTPRequestHandler):
     h1 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
     .subtitle { font-size: 13px; color: #888; margin-bottom: 20px; }
     .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
     .metric { background: #ebebea; border-radius: 8px; padding: 12px 16px; }
     .metric-label { font-size: 12px; color: #888; margin-bottom: 4px; }
     .metric-val { font-size: 24px; font-weight: 500; }
-    .card { background: #fff; border: 0.5px solid #ddd; border-radius: 12px; padding: 16px 20px; }
+    .card { background: #fff; border: 0.5px solid #ddd; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; }
     .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .card-title { font-size: 13px; font-weight: 500; }
     button { padding: 5px 14px; border-radius: 6px; border: 0.5px solid #ccc; background: #f0f0ee; font-size: 12px; cursor: pointer; }
