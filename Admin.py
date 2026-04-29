@@ -7,6 +7,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from config import ADMIN_PORT, ADMIN_PASSWORD, LOG_FILE
 import cache
 import Stats
+import metrics
 from filter import get_blocked_hosts, add_blocked_host
 
 
@@ -57,6 +58,8 @@ class AdminHandler(BaseHTTPRequestHandler):
             self.serve_dashboard()
         elif self.path == '/api/stats':
             self.serve_stats()
+        elif self.path == '/api/metrics':
+            self.serve_metrics()
         elif self.path == '/api/logs':
             self.serve_logs()
         else:
@@ -101,6 +104,10 @@ class AdminHandler(BaseHTTPRequestHandler):
         s['blacklist'] = get_blocked_hosts()
         self.json_response(s)
 
+    def serve_metrics(self):
+        m = metrics.get_summary()
+        self.json_response(m)
+
     def serve_logs(self):
         body = read_logs().encode()
         self.send_response(200)
@@ -142,6 +149,7 @@ class AdminHandler(BaseHTTPRequestHandler):
     .status-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .hint { font-size: 11px; color: #aaa; margin-top: 6px; }
     #msg { font-size: 12px; color: #0c447c; min-height: 16px; margin-top: 6px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   </style>
 </head>
 <body>
@@ -159,6 +167,23 @@ class AdminHandler(BaseHTTPRequestHandler):
   <div class="metric"><div class="metric-label">Cache hits</div><div class="metric-val" id="m-hits">—</div></div>
   <div class="metric"><div class="metric-label">Cache entries</div><div class="metric-val" id="m-cache">—</div></div>
   <div class="metric"><div class="metric-label">Blocked</div><div class="metric-val" style="color:#a32d2d" id="m-blocked">—</div></div>
+</div>
+
+<div class="card">
+  <div class="card-title" style="margin-bottom:10px">Performance metrics</div>
+  <div class="grid-4" style="margin-bottom: 12px;">
+    <div class="metric"><div class="metric-label">Avg hit</div><div class="metric-val" style="font-size:18px" id="p-hit">—</div></div>
+    <div class="metric"><div class="metric-label">Avg miss</div><div class="metric-val" style="font-size:18px" id="p-miss">—</div></div>
+    <div class="metric"><div class="metric-label">Speedup</div><div class="metric-val" style="font-size:18px;color:#3b6d11" id="p-speedup">—</div></div>
+    <div class="metric"><div class="metric-label">Time saved</div><div class="metric-val" style="font-size:18px;color:#0c447c" id="p-saved">—</div></div>
+  </div>
+  <div id="p-bars"></div>
+  <div class="hint" id="p-hint"></div>
+  <style>
+    .perf-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+    .bar-wrap { background: #f0f0f0; border-radius: 3px; height: 12px; margin-bottom: 8px; }
+    .bar { height: 100%; border-radius: 3px; }
+  </style>
 </div>
 
 <div class="grid-2">
