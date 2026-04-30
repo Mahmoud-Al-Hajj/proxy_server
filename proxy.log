@@ -269,3 +269,160 @@ Proxy-Connection: Keep-Alive
 [2026-04-29 18:14:33] Proxy running on 0.0.0.0:3128
 [2026-04-29 18:14:33] Press Ctrl+C to stop.
 
+[2026-04-29 19:22:53] Proxy running on 0.0.0.0:3128
+[2026-04-29 19:22:53] Press Ctrl+C to stop.
+
+[2026-04-30 21:15:21] Proxy running on 0.0.0.0:3128
+[2026-04-30 21:15:21] Press Ctrl+C to stop.
+
+[2026-04-30 21:15:37] Connection from 127.0.0.1:60921
+[2026-04-30 21:15:37] [127.0.0.1:60921] Request received  | 2026-04-30 21:15:37.525577 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:15:37] [127.0.0.1:60921] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:15:37] [127.0.0.1:60921] Cache MISS        | 2026-04-30 21:15:37.532206 | http://example.com:80/
+[2026-04-30 21:15:37] [127.0.0.1:60921] Request forwarded | 2026-04-30 21:15:37.534801 | GET http://example.com:80/
+[2026-04-30 21:15:37] [127.0.0.1:60921] Response received | 2026-04-30 21:15:37.650511 | HTTP/1.1 200 OK (797 bytes)
+[2026-04-30 21:15:37] [127.0.0.1:60921] Response headers:
+HTTP/1.1 200 OK
+Date: Thu, 30 Apr 2026 18:15:37 GMT
+Content-Type: text/html
+Connection: close
+Server: cloudflare
+Last-Modified: Sat, 25 Apr 2026 11:01:06 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 2232
+cf-cache-status: HIT
+CF-RAY: 9f4888698b82f5a9-MRS
+
+[2026-04-30 21:15:37] [127.0.0.1:60921] Stored in cache   | http://example.com:80/ (cache size: 1)
+[2026-04-30 21:15:37] [127.0.0.1:60921] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-30 21:15:37] [127.0.0.1:60921] Connection closed
+[2026-04-30 21:16:05] Connection from 127.0.0.1:60802
+[2026-04-30 21:16:05] [127.0.0.1:60802] Request received  | 2026-04-30 21:16:05.929433 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:16:05] [127.0.0.1:60802] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:16:05] [127.0.0.1:60802] Cache HIT | http://example.com:80/
+[2026-04-30 21:16:05] [127.0.0.1:60802] Response sent from cache | http://example.com:80/
+[2026-04-30 21:16:05] [127.0.0.1:60802] Connection closed
+[2026-04-30 21:26:14] Proxy running on 0.0.0.0:3128
+[2026-04-30 21:26:14] Press Ctrl+C to stop.
+
+[2026-04-30 21:29:31] Connection from 127.0.0.1:51255
+[2026-04-30 21:29:31] [127.0.0.1:51255] Request received  | 2026-04-30 21:29:31.182005 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:29:31] [127.0.0.1:51255] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:29:31] [127.0.0.1:51255] Cache MISS        | 2026-04-30 21:29:31.189071 | http://example.com:80/
+[2026-04-30 21:29:31] [127.0.0.1:51255] Request forwarded | 2026-04-30 21:29:31.191072 | GET http://example.com:80/
+[2026-04-30 21:29:31] [127.0.0.1:51255] Response received | 2026-04-30 21:29:31.301457 | HTTP/1.1 200 OK (797 bytes)
+[2026-04-30 21:29:31] [127.0.0.1:51255] Response headers:
+HTTP/1.1 200 OK
+Date: Thu, 30 Apr 2026 18:29:30 GMT
+Content-Type: text/html
+Connection: close
+Server: cloudflare
+Last-Modified: Sat, 25 Apr 2026 11:01:06 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 3065
+cf-cache-status: HIT
+CF-RAY: 9f489cc3d8a5989e-MRS
+
+[2026-04-30 21:29:31] [127.0.0.1:51255] Stored in cache   | http://example.com:80/ (cache size: 1)
+[2026-04-30 21:29:31] [127.0.0.1:51255] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-30 21:29:31] [127.0.0.1:51255] Connection closed
+[2026-04-30 21:29:33] Connection from 127.0.0.1:51272
+[2026-04-30 21:29:33] [127.0.0.1:51272] Request received  | 2026-04-30 21:29:33.421429 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:29:33] [127.0.0.1:51272] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:29:33] [127.0.0.1:51272] Cache HIT | http://example.com:80/
+[2026-04-30 21:29:33] [127.0.0.1:51272] Response sent from cache | http://example.com:80/
+[2026-04-30 21:29:33] [127.0.0.1:51272] Connection closed
+[2026-04-30 21:30:04] Connection from 127.0.0.1:54017
+[2026-04-30 21:30:04] [127.0.0.1:54017] Request received  | 2026-04-30 21:30:04.061384 | GET http://httpbin.org/get HTTP/1.1
+[2026-04-30 21:30:04] [127.0.0.1:54017] Full request:
+GET http://httpbin.org/get HTTP/1.1
+Host: httpbin.org
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:30:04] [127.0.0.1:54017] Cache MISS        | 2026-04-30 21:30:04.065813 | http://httpbin.org:80/get
+[2026-04-30 21:30:04] [127.0.0.1:54017] Request forwarded | 2026-04-30 21:30:04.067333 | GET http://httpbin.org:80/get
+[2026-04-30 21:30:04] [127.0.0.1:54017] Response received | 2026-04-30 21:30:04.360616 | HTTP/1.1 200 OK (423 bytes)
+[2026-04-30 21:30:04] [127.0.0.1:54017] Response headers:
+HTTP/1.1 200 OK
+Date: Thu, 30 Apr 2026 18:30:03 GMT
+Content-Type: application/json
+Content-Length: 198
+Connection: close
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+[2026-04-30 21:30:04] [127.0.0.1:54017] Stored in cache   | http://httpbin.org:80/get (cache size: 2)
+[2026-04-30 21:30:04] [127.0.0.1:54017] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-30 21:30:04] [127.0.0.1:54017] Connection closed
+[2026-04-30 21:32:09] Proxy running on 0.0.0.0:3128
+[2026-04-30 21:32:09] Press Ctrl+C to stop.
+
+[2026-04-30 21:32:18] Connection from 127.0.0.1:49698
+[2026-04-30 21:32:18] [127.0.0.1:49698] Request received  | 2026-04-30 21:32:18.462471 | GET http://httpbin.org/get HTTP/1.1
+[2026-04-30 21:32:18] [127.0.0.1:49698] Full request:
+GET http://httpbin.org/get HTTP/1.1
+Host: httpbin.org
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:32:18] [127.0.0.1:49698] Cache MISS        | 2026-04-30 21:32:18.467459 | http://httpbin.org:80/get
+[2026-04-30 21:32:18] [127.0.0.1:49698] Request forwarded | 2026-04-30 21:32:18.470639 | GET http://httpbin.org:80/get
+[2026-04-30 21:32:19] [127.0.0.1:49698] Response received | 2026-04-30 21:32:19.568339 | HTTP/1.1 200 OK (423 bytes)
+[2026-04-30 21:32:19] [127.0.0.1:49698] Response headers:
+HTTP/1.1 200 OK
+Date: Thu, 30 Apr 2026 18:32:18 GMT
+Content-Type: application/json
+Content-Length: 198
+Connection: close
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+[2026-04-30 21:32:19] [127.0.0.1:49698] Stored in cache   | http://httpbin.org:80/get (cache size: 1)
+[2026-04-30 21:32:19] [127.0.0.1:49698] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-30 21:32:19] [127.0.0.1:49698] Connection closed
+[2026-04-30 21:32:20] Connection from 127.0.0.1:49714
+[2026-04-30 21:32:20] [127.0.0.1:49714] Request received  | 2026-04-30 21:32:20.514110 | GET http://httpbin.org/get HTTP/1.1
+[2026-04-30 21:32:20] [127.0.0.1:49714] Full request:
+GET http://httpbin.org/get HTTP/1.1
+Host: httpbin.org
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:32:20] [127.0.0.1:49714] Cache HIT | http://httpbin.org:80/get
+[2026-04-30 21:32:20] [127.0.0.1:49714] Response sent from cache | http://httpbin.org:80/get
+[2026-04-30 21:32:20] [127.0.0.1:49714] Connection closed
+[2026-04-30 21:33:52] Proxy running on 0.0.0.0:3128
+[2026-04-30 21:33:52] Press Ctrl+C to stop.
+

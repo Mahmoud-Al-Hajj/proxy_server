@@ -3,7 +3,7 @@ import time
 import threading
 import config
 
-cache = {}
+cacheStore = {}
 # key   → URL
 # value → { response, timestamp, last_used }
 
@@ -26,7 +26,7 @@ def get(url):
     4. Return response
     """
     with lock:
-        entry = cache.get(url)
+        entry = cacheStore.get(url)
         if not entry:
             return None
 
@@ -34,9 +34,10 @@ def get(url):
 
         # Check expiration
         if now - entry['timestamp'] > CACHE_TTL:
-            cache.pop(url, None)
+            cacheStore.pop(url, None)
             return None
 
+        entry['last_used'] = now
         return entry['response']
 
 
@@ -54,28 +55,28 @@ def store(url, response):
         now = time.time()
 
         # ── UPDATE EXISTING ENTRY ────────────────────
-        if url in cache:
-            cache[url] = {
+        if url in cacheStore:
+            cacheStore[url] = {
                 'response': response,
                 'timestamp': now,
                 'last_used': now
             }
             return
 
-        if len(cache) >= CACHE_MAX_SIZE:
+        if len(cacheStore) >= CACHE_MAX_SIZE:
 
             # Find the least recently used entry manually
             lru_url = None
             oldest_time = float('inf')  # Initialize to infinity; any real timestamp will be smaller
             
-            for key, value in cache.items():
+            for key, value in cacheStore.items():
                 if value['last_used'] < oldest_time:
                     oldest_time = value['last_used']
                     lru_url = key
 
-            cache.pop(lru_url, None)
+            cacheStore.pop(lru_url, None)
 
-        cache[url] = {
+        cacheStore[url] = {
             'response': response,
             'timestamp': now,
             'last_used': now
@@ -83,13 +84,13 @@ def store(url, response):
 
 def clear():
     with lock:
-        cache.clear()
+        cacheStore.clear()
 
 def size():
     with lock:
-        return len(cache)
+        return len(cacheStore)
 
 def keys():
     """Return all cached URLs."""
     with lock:
-        return list(cache.keys())
+        return list(cacheStore.keys())
