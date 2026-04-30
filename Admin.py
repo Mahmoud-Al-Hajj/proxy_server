@@ -245,7 +245,7 @@ class AdminHandler(BaseHTTPRequestHandler):
 <div class="status-bar">
   <div>
     <h1>Proxy admin panel</h1>
-    <div class="subtitle">Live stats — refreshes every 5 seconds</div>
+    <div class="subtitle">Live stats - refreshes every 5 seconds</div>
   </div>
   <span class="badge online">Online</span>
 </div>
@@ -349,7 +349,7 @@ class AdminHandler(BaseHTTPRequestHandler):
           '<div class="perf-row"><span>Memory serve (hit)</span><span style="font-family:monospace;color:#3b6d11">' + d.avg_hit_ms + ' ms</span></div>' +
           '<div class="bar-wrap"><div class="bar" style="width:' + hitPct + '%;background:#3b6d11"></div></div>';
         document.getElementById('p-hint').textContent =
-          'Based on ' + (d.hit_count + d.miss_count) + ' requests — ' + d.hit_count + ' hits, ' + d.miss_count + ' misses';
+          'Based on ' + (d.hit_count + d.miss_count) + ' requests  ' + d.hit_count + ' hits, ' + d.miss_count + ' misses';
       } else {
         bars.innerHTML = '<div style="font-size:12px;color:#aaa">Make a few requests to see the comparison chart.</div>';
       }

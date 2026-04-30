@@ -426,3 +426,152 @@ Proxy-Connection: Keep-Alive
 [2026-04-30 21:33:52] Proxy running on 0.0.0.0:3128
 [2026-04-30 21:33:52] Press Ctrl+C to stop.
 
+[2026-04-30 21:57:34] Connection from 127.0.0.1:62658
+[2026-04-30 21:57:34] [127.0.0.1:62658] Request received  | 2026-04-30 21:57:34.357713 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:57:34] [127.0.0.1:62658] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:34] [127.0.0.1:62658] Cache MISS        | 2026-04-30 21:57:34.363760 | http://example.com:80/
+[2026-04-30 21:57:34] [127.0.0.1:62658] Request forwarded | 2026-04-30 21:57:34.364749 | GET http://example.com:80/
+[2026-04-30 21:57:34] [127.0.0.1:62658] Response received | 2026-04-30 21:57:34.479040 | HTTP/1.1 200 OK (797 bytes)
+[2026-04-30 21:57:34] [127.0.0.1:62658] Response headers:
+HTTP/1.1 200 OK
+Date: Thu, 30 Apr 2026 18:57:34 GMT
+Content-Type: text/html
+Connection: close
+Server: cloudflare
+Last-Modified: Sat, 25 Apr 2026 11:01:06 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 4749
+cf-cache-status: HIT
+CF-RAY: 9f48c5dbccf5e1d4-MRS
+
+[2026-04-30 21:57:34] [127.0.0.1:62658] Stored in cache   | http://example.com:80/ (cache size: 1)
+[2026-04-30 21:57:34] [127.0.0.1:62658] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-30 21:57:34] [127.0.0.1:62658] Connection closed
+[2026-04-30 21:57:35] Connection from 127.0.0.1:62665
+[2026-04-30 21:57:35] [127.0.0.1:62665] Request received  | 2026-04-30 21:57:35.400443 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:57:35] [127.0.0.1:62665] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:35] [127.0.0.1:62665] Cache HIT | http://example.com:80/
+[2026-04-30 21:57:35] [127.0.0.1:62665] Response sent from cache | http://example.com:80/
+[2026-04-30 21:57:35] [127.0.0.1:62665] Connection closed
+[2026-04-30 21:57:35] Connection from 127.0.0.1:62666
+[2026-04-30 21:57:35] [127.0.0.1:62666] Request received  | 2026-04-30 21:57:35.835417 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:57:35] [127.0.0.1:62666] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:35] [127.0.0.1:62666] Cache HIT | http://example.com:80/
+[2026-04-30 21:57:35] [127.0.0.1:62666] Response sent from cache | http://example.com:80/
+[2026-04-30 21:57:35] [127.0.0.1:62666] Connection closed
+[2026-04-30 21:57:36] Connection from 127.0.0.1:62669
+[2026-04-30 21:57:36] [127.0.0.1:62669] Request received  | 2026-04-30 21:57:36.232781 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:57:36] [127.0.0.1:62669] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:36] [127.0.0.1:62669] Cache HIT | http://example.com:80/
+[2026-04-30 21:57:36] [127.0.0.1:62669] Response sent from cache | http://example.com:80/
+[2026-04-30 21:57:36] [127.0.0.1:62669] Connection closed
+[2026-04-30 21:57:36] Connection from 127.0.0.1:62670
+[2026-04-30 21:57:36] [127.0.0.1:62670] Request received  | 2026-04-30 21:57:36.611601 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:57:36] [127.0.0.1:62670] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:36] [127.0.0.1:62670] Cache HIT | http://example.com:80/
+[2026-04-30 21:57:36] [127.0.0.1:62670] Response sent from cache | http://example.com:80/
+[2026-04-30 21:57:36] [127.0.0.1:62670] Connection closed
+[2026-04-30 21:57:37] Connection from 127.0.0.1:57378
+[2026-04-30 21:57:37] [127.0.0.1:57378] Request received  | 2026-04-30 21:57:37.073077 | GET http://example.com/ HTTP/1.1
+[2026-04-30 21:57:37] [127.0.0.1:57378] Full request:
+GET http://example.com/ HTTP/1.1
+Host: example.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:37] [127.0.0.1:57378] Cache HIT | http://example.com:80/
+[2026-04-30 21:57:37] [127.0.0.1:57378] Response sent from cache | http://example.com:80/
+[2026-04-30 21:57:37] [127.0.0.1:57378] Connection closed
+[2026-04-30 21:57:42] Connection from 127.0.0.1:52025
+[2026-04-30 21:57:42] [127.0.0.1:52025] Request received  | 2026-04-30 21:57:42.793596 | GET http://httpbin.org/get HTTP/1.1
+[2026-04-30 21:57:42] [127.0.0.1:52025] Full request:
+GET http://httpbin.org/get HTTP/1.1
+Host: httpbin.org
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:42] [127.0.0.1:52025] Cache MISS        | 2026-04-30 21:57:42.804876 | http://httpbin.org:80/get
+[2026-04-30 21:57:42] [127.0.0.1:52025] Request forwarded | 2026-04-30 21:57:42.806873 | GET http://httpbin.org:80/get
+[2026-04-30 21:57:43] [127.0.0.1:52025] Response received | 2026-04-30 21:57:43.136784 | HTTP/1.1 200 OK (423 bytes)
+[2026-04-30 21:57:43] [127.0.0.1:52025] Response headers:
+HTTP/1.1 200 OK
+Date: Thu, 30 Apr 2026 18:57:42 GMT
+Content-Type: application/json
+Content-Length: 198
+Connection: close
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+[2026-04-30 21:57:43] [127.0.0.1:52025] Stored in cache   | http://httpbin.org:80/get (cache size: 2)
+[2026-04-30 21:57:43] [127.0.0.1:52025] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-30 21:57:43] [127.0.0.1:52025] Connection closed
+[2026-04-30 21:57:43] Connection from 127.0.0.1:52029
+[2026-04-30 21:57:43] [127.0.0.1:52029] Request received  | 2026-04-30 21:57:43.812060 | GET http://httpbin.org/get HTTP/1.1
+[2026-04-30 21:57:43] [127.0.0.1:52029] Full request:
+GET http://httpbin.org/get HTTP/1.1
+Host: httpbin.org
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:43] [127.0.0.1:52029] Cache HIT | http://httpbin.org:80/get
+[2026-04-30 21:57:43] [127.0.0.1:52029] Response sent from cache | http://httpbin.org:80/get
+[2026-04-30 21:57:43] [127.0.0.1:52029] Connection closed
+[2026-04-30 21:57:44] Connection from 127.0.0.1:52035
+[2026-04-30 21:57:44] [127.0.0.1:52035] Request received  | 2026-04-30 21:57:44.455142 | GET http://httpbin.org/get HTTP/1.1
+[2026-04-30 21:57:44] [127.0.0.1:52035] Full request:
+GET http://httpbin.org/get HTTP/1.1
+Host: httpbin.org
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:44] [127.0.0.1:52035] Cache HIT | http://httpbin.org:80/get
+[2026-04-30 21:57:44] [127.0.0.1:52035] Response sent from cache | http://httpbin.org:80/get
+[2026-04-30 21:57:44] [127.0.0.1:52035] Connection closed
+[2026-04-30 21:57:45] Connection from 127.0.0.1:52038
+[2026-04-30 21:57:45] [127.0.0.1:52038] Request received  | 2026-04-30 21:57:45.098982 | GET http://httpbin.org/get HTTP/1.1
+[2026-04-30 21:57:45] [127.0.0.1:52038] Full request:
+GET http://httpbin.org/get HTTP/1.1
+Host: httpbin.org
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:57:45] [127.0.0.1:52038] Cache HIT | http://httpbin.org:80/get
+[2026-04-30 21:57:45] [127.0.0.1:52038] Response sent from cache | http://httpbin.org:80/get
+[2026-04-30 21:57:45] [127.0.0.1:52038] Connection closed
