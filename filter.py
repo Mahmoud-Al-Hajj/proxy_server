@@ -13,10 +13,6 @@ def is_blocked_host(host):
     with lock:
         return host in blocked_hosts
 
-def is_blocked_host(host):
-    with lock:
-        return host in BLOCKED_HOSTS
-
 def add_blocked_host(host):
     """Add a host to the blacklist at runtime (from the admin panel)."""
     with lock:
