@@ -575,3 +575,262 @@ Proxy-Connection: Keep-Alive
 [2026-04-30 21:57:45] [127.0.0.1:52038] Cache HIT | http://httpbin.org:80/get
 [2026-04-30 21:57:45] [127.0.0.1:52038] Response sent from cache | http://httpbin.org:80/get
 [2026-04-30 21:57:45] [127.0.0.1:52038] Connection closed
+[2026-04-30 21:58:44] Connection from 127.0.0.1:63918
+[2026-04-30 21:58:44] [127.0.0.1:63918] Request received  | 2026-04-30 21:58:44.243406 | GET http://httpbin.org/ HTTP/1.1
+[2026-04-30 21:58:44] [127.0.0.1:63918] Full request:
+GET http://httpbin.org/ HTTP/1.1
+Host: httpbin.org
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:58:44] [127.0.0.1:63918] Cache MISS        | 2026-04-30 21:58:44.246602 | http://httpbin.org:80/
+[2026-04-30 21:58:44] [127.0.0.1:63918] Request forwarded | 2026-04-30 21:58:44.248776 | GET http://httpbin.org:80/
+[2026-04-30 21:58:44] [127.0.0.1:63918] Response received | 2026-04-30 21:58:44.609783 | HTTP/1.1 200 OK (9827 bytes)
+[2026-04-30 21:58:44] [127.0.0.1:63918] Response headers:
+HTTP/1.1 200 OK
+Date: Thu, 30 Apr 2026 18:58:44 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 9593
+Connection: close
+Server: gunicorn/19.9.0
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+
+[2026-04-30 21:58:44] [127.0.0.1:63918] Stored in cache   | http://httpbin.org:80/ (cache size: 3)
+[2026-04-30 21:58:44] [127.0.0.1:63918] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 100: character maps to <undefined>
+[2026-04-30 21:58:44] [127.0.0.1:63918] Connection closed
+[2026-04-30 21:58:49] Connection from 127.0.0.1:61180
+[2026-04-30 21:58:49] [127.0.0.1:61180] Request received  | 2026-04-30 21:58:49.855177 | GET http://httpbin.org/ HTTP/1.1
+[2026-04-30 21:58:49] [127.0.0.1:61180] Full request:
+GET http://httpbin.org/ HTTP/1.1
+Host: httpbin.org
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 21:58:49] [127.0.0.1:61180] Cache HIT | http://httpbin.org:80/
+[2026-04-30 21:58:49] [127.0.0.1:61180] Response sent from cache | http://httpbin.org:80/
+[2026-04-30 21:58:49] [127.0.0.1:61180] Connection closed
+[2026-04-30 22:01:25] Connection from 127.0.0.1:56150
+[2026-04-30 22:01:25] [127.0.0.1:56150] Request received  | 2026-04-30 22:01:25.861621 | CONNECT example.com:443 HTTP/1.1
+[2026-04-30 22:01:25] [127.0.0.1:56150] Full request:
+CONNECT example.com:443 HTTP/1.1
+Host: example.com:443
+User-Agent: curl/8.18.0
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 22:01:25] [127.0.0.1:56150] CONNECT tunnel    | example.com:443
+[2026-04-30 22:01:26] [127.0.0.1:56150] Connection closed
+[2026-04-30 22:27:32] Connection from 127.0.0.1:59745
+[2026-04-30 22:27:32] Connection from 127.0.0.1:59746
+[2026-04-30 22:27:32] [127.0.0.1:59745] Request received  | 2026-04-30 22:27:32.235526 | GET http://www.example.com/ HTTP/1.1
+[2026-04-30 22:27:32] Connection from 127.0.0.1:59744
+[2026-04-30 22:27:32] [127.0.0.1:59746] Request received  | 2026-04-30 22:27:32.236753 | GET http://www.bing.com/ HTTP/1.1
+[2026-04-30 22:27:32] Connection from 127.0.0.1:59747
+GET http://www.example.com/ HTTP/1.1
+Host: www.example.com
+Connection: close
+
+[2026-04-30 22:27:32] [127.0.0.1:59744] Request received  | 2026-04-30 22:27:32.239784 | GET http://www.google.com/ HTTP/1.1
+[2026-04-30 22:27:32] [127.0.0.1:59745] Cache MISS        | 2026-04-30 22:27:32.243014 | http://www.example.com:80/
+[2026-04-30 22:27:32] Connection from 127.0.0.1:59748
+[2026-04-30 22:27:32] [127.0.0.1:59747] Request received  | 2026-04-30 22:27:32.243014 | GET http://www.github.com/ HTTP/1.1
+[2026-04-30 22:27:32] [127.0.0.1:59745] Request forwarded | 2026-04-30 22:27:32.248014 | GET http://www.example.com:80/
+[2026-04-30 22:27:32] [127.0.0.1:59746] Full request:
+GET http://www.bing.com/ HTTP/1.1
+Host: www.bing.com
+Connection: close
+
+[2026-04-30 22:27:32] [127.0.0.1:59744] Full request:
+GET http://www.google.com/ HTTP/1.1
+Host: www.google.com
+Connection: close
+
+[2026-04-30 22:27:32] [127.0.0.1:59748] Request received  | 2026-04-30 22:27:32.250021 | GET http://www.wikipedia.org/ HTTP/1.1
+[2026-04-30 22:27:32] [127.0.0.1:59747] Full request:
+GET http://www.github.com/ HTTP/1.1
+Host: www.github.com
+Connection: close
+
+[2026-04-30 22:27:32] [127.0.0.1:59746] Cache MISS        | 2026-04-30 22:27:32.255452 | http://www.bing.com:80/
+[2026-04-30 22:27:32] [127.0.0.1:59744] Cache MISS        | 2026-04-30 22:27:32.256970 | http://www.google.com:80/
+[2026-04-30 22:27:32] [127.0.0.1:59748] Full request:
+GET http://www.wikipedia.org/ HTTP/1.1
+Host: www.wikipedia.org
+Connection: close
+
+[2026-04-30 22:27:32] [127.0.0.1:59746] Request forwarded | 2026-04-30 22:27:32.258107 | GET http://www.bing.com:80/
+[2026-04-30 22:27:32] [127.0.0.1:59747] Cache MISS        | 2026-04-30 22:27:32.258107 | http://www.github.com:80/
+[2026-04-30 22:27:32] [127.0.0.1:59744] Request forwarded | 2026-04-30 22:27:32.259601 | GET http://www.google.com:80/
+[2026-04-30 22:27:32] [127.0.0.1:59748] Cache MISS        | 2026-04-30 22:27:32.262152 | http://www.wikipedia.org:80/
+[2026-04-30 22:27:32] [127.0.0.1:59747] Request forwarded | 2026-04-30 22:27:32.263570 | GET http://www.github.com:80/
+[2026-04-30 22:27:32] [127.0.0.1:59748] Request forwarded | 2026-04-30 22:27:32.266274 | GET http://www.wikipedia.org:80/
+[2026-04-30 22:27:32] [127.0.0.1:59748] Response received | 2026-04-30 22:27:32.373062 | HTTP/1.1 301 Moved Permanently (173 bytes)
+[2026-04-30 22:27:32] [127.0.0.1:59748] Response headers:
+HTTP/1.1 301 Moved Permanently
+content-length: 0
+location: https://www.wikipedia.org/
+server: HAProxy
+x-cache: cp6013 int
+x-cache-status: int-tls
+connection: close
+
+[2026-04-30 22:27:32] [127.0.0.1:59748] Stored in cache   | http://www.wikipedia.org:80/ (cache size: 4)
+[2026-04-30 22:27:32] [127.0.0.1:59748] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-30 22:27:32] [127.0.0.1:59745] Response received | 2026-04-30 22:27:32.380770 | HTTP/1.1 200 OK (797 bytes)
+[2026-04-30 22:27:32] [127.0.0.1:59748] Connection closed
+[2026-04-30 22:27:32] [127.0.0.1:59745] Response headers:
+HTTP/1.1 200 OK
+Date: Thu, 30 Apr 2026 19:27:31 GMT
+Content-Type: text/html
+Connection: close
+Server: cloudflare
+Last-Modified: Sat, 18 Apr 2026 00:51:00 GMT
+Allow: GET, HEAD
+Accept-Ranges: bytes
+Age: 9492
+cf-cache-status: HIT
+CF-RAY: 9f48f1c0b97fdad4-MRS
+
+[2026-04-30 22:27:32] [127.0.0.1:59745] Stored in cache   | http://www.example.com:80/ (cache size: 5)
+[2026-04-30 22:27:32] [127.0.0.1:59745] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-30 22:27:32] [127.0.0.1:59745] Connection closed
+[2026-04-30 22:27:32] [127.0.0.1:59747] Response received | 2026-04-30 22:27:32.405328 | HTTP/1.1 301 Moved Permanently (107 bytes)
+[2026-04-30 22:27:32] [127.0.0.1:59747] Response headers:
+HTTP/1.1 301 Moved Permanently
+Content-Length: 0
+Location: https://www.github.com/
+connection: close
+
+[2026-04-30 22:27:32] [127.0.0.1:59747] Stored in cache   | http://www.github.com:80/ (cache size: 6)
+[2026-04-30 22:27:32] [127.0.0.1:59747] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 99: character maps to <undefined>
+[2026-04-30 22:27:32] [127.0.0.1:59747] Connection closed
+[2026-04-30 22:27:32] [127.0.0.1:59746] Response received | 2026-04-30 22:27:32.630055 | HTTP/1.0 200 OK (68647 bytes)
+[2026-04-30 22:27:32] [127.0.0.1:59746] Response headers:
+HTTP/1.0 200 OK
+Content-Type: text/html; charset=utf-8
+Cache-Control: private
+X-EventID: 69f3ad241ddc4027b1b9c817c28f964d
+UserAgentReductionOptOut: A7kgTC5xdZ2WIVGZEfb1hUoNuvjzOZX3VIV/BA6C18kQOOF50Q0D3oWoAm49k3BQImkujKILc7JmPysWk3CSjwUAAACMeyJvcmlnaW4iOiJodHRwczovL3d3dy5iaW5nLmNvbTo0NDMiLCJmZWF0dXJlIjoiU2VuZEZ1bGxVc2VyQWdlbnRBZnRlclJlZHVjdGlvbiIsImV4cGlyeSI6MTY4NDg4NjM5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=
+Permissions-Policy: unload=()
+Content-Security-Policy: script-src https: 'strict-dynamic' 'report-sample' 'wasm-unsafe-eval' 'nonce-IZA8vaJaxsYaIG8zVp8L0M16Ef41kyOfB9Re8UTzNKI='; base-uri 'self';
+P3P: CP="NON UNI COM NAV STA LOC CURa DEVa PSAa PSDa OUR IND"
+X-Frame-Options: SAMEORIGIN
+Date: Thu, 30 Apr 2026 19:27:32 GMT
+Content-Length: 66367
+Connection: close
+Set-Cookie: MUID=3EC785C93333636B33B6928232326201; domain=.bing.com; expires=Tue, 25-May-2027 19:27:32 GMT; path=/
+Set-Cookie: MUIDB=3EC785C93333636B33B6928232326201; expires=Tue, 25-May-2027 19:27:32 GMT; path=/
+Set-Cookie: _EDGE_S=F=1&SID=13910841E3C768A53F6C1F0AE2C66997; domain=.bing.com; path=/
+Set-Cookie: _EDGE_V=1; domain=.bing.com; expires=Tue, 25-May-2027 19:27:32 GMT; path=/
+Set-Cookie: SRCHD=AF=NOFORM; domain=.bing.com; expires=Sun, 30-Apr-2028 19:27:32 GMT; path=/
+Set-Cookie: SRCHUID=V=2&GUID=5CE421F5F62543329A8DBF819765AE75&dmnchg=1; domain=.bing.com; expires=Sun, 30-Apr-2028 19:27:32 GMT; path=/
+Set-Cookie: SRCHUSR=DOB=20260430; domain=.bing.com; expires=Sun, 30-Apr-2028 19:27:32 GMT; path=/
+Set-Cookie: SRCHHPGUSR=SRCHLANG=ar&IG=E19BEBB6A1584398A0BB4C4310909781; domain=.bing.com; expires=Sun, 30-Apr-2028 19:27:32 GMT; path=/
+Set-Cookie: _SS=SID=13910841E3C768A53F6C1F0AE2C66997; domain=.bing.com; path=/
+Set-Cookie: ULC=; domain=.bing.com; expires=Wed, 29-Apr-2026 19:27:32 GMT; path=/
+Set-Cookie: _HPVN=CS=eyJQbiI6eyJDbiI6MSwiU3QiOjAsIlFzIjowLCJQcm9kIjoiUCJ9LCJTYyI6eyJDbiI6MSwiU3QiOjAsIlFzIjowLCJQcm9kIjoiSCJ9LCJReiI6eyJDbiI6MSwiU3QiOjAsIlFzIjowLCJQcm9kIjoiVCJ9LCJBcCI6dHJ1ZSwiTXV0ZSI6dHJ1ZSwiTGFkIjoiMjAyNi0wNC0zMFQwMDowMDowMFoiLCJJb3RkIjowLCJHd2IiOjAsIlRucyI6MCwiRGZ0IjpudWxsLCJNdnMiOjAsIkZsdCI6MCwiSW1wIjoxLCJUb2JuIjowfQ==; domain=.bing.com; expires=Sun, 30-Apr-2028 19:27:32 GMT; path=/
+X-CDN-TraceID: 0.0f151602.1777577251.11fd943
+
+[2026-04-30 22:27:32] [127.0.0.1:59746] Stored in cache   | http://www.bing.com:80/ (cache size: 7)
+[2026-04-30 22:27:32] [127.0.0.1:59746] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 101: character maps to <undefined>
+[2026-04-30 22:27:32] [127.0.0.1:59746] Connection closed
+[2026-04-30 22:27:33] [127.0.0.1:59744] Response received | 2026-04-30 22:27:33.388410 | HTTP/1.0 200 OK (85536 bytes)
+[2026-04-30 22:27:33] [127.0.0.1:59744] Response headers:
+HTTP/1.0 200 OK
+Date: Thu, 30 Apr 2026 19:27:32 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-MsbDCNUBW0doWkmCw_Nzqg' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+Server: gws
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: __Secure-STRP=AEEP7gKE83_hrRzANqEz1LtpCfIZikaffPorLI3l9EblcAVTudOPFBa4HryaEDSacXfKBWtj1PGKTONGfsi1O5_7csjXjBR4kg; expires=Thu, 30-Apr-2026 19:32:32 GMT; path=/; domain=.google.com; Secure; SameSite=strict
+Set-Cookie: AEC=AaJma5v4FkSC_4Z5ze0Pt_3C6Csdj32X2bMrRbfA3ZMXyhP62tjziyfY0Bw; expires=Tue, 27-Oct-2026 19:27:32 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax
+Set-Cookie: NID=531=RbS_j5DUAxX6Q4dpSklEbKlLk1pHaIBoLVFW9dv-v1E7slOKojrwsYGeg-hQ0H8F_jw7ZhLmn8V1BXQCC5DN8r8yYsz10rrDgNHNZB0DxPYADNz5V-lhEDpECEEgyPslHIzJM0i-P_3lWlQyS6PyK1nQcXqbaE3lB_M6XLCUR4-06l4WDtvSN_ukvW9vDF9Sh1vjGj3YlV7YThRsHd_NCYlcgFKwU7esmA; expires=Fri, 30-Oct-2026 19:27:32 GMT; path=/; domain=.google.com; HttpOnly
+Accept-Ranges: none
+Vary: Accept-Encoding
+
+[2026-04-30 22:27:33] [127.0.0.1:59744] Stored in cache   | http://www.google.com:80/ (cache size: 8)
+[2026-04-30 22:27:33] [127.0.0.1:59744] Unexpected error: 'charmap' codec can't encode character '\u2192' in position 101: character maps to <undefined>
+[2026-04-30 22:27:33] [127.0.0.1:59744] Connection closed
+[2026-04-30 22:27:50] Connection from 127.0.0.1:63225
+[2026-04-30 22:27:50] Connection from 127.0.0.1:63226
+[2026-04-30 22:27:50] Connection from 127.0.0.1:63227
+[2026-04-30 22:27:50] [127.0.0.1:63226] Request received  | 2026-04-30 22:27:50.677045 | GET http://www.example.com/ HTTP/1.1
+[2026-04-30 22:27:50] Connection from 127.0.0.1:63228
+[2026-04-30 22:27:50] [127.0.0.1:63225] Request received  | 2026-04-30 22:27:50.677045 | GET http://www.google.com/ HTTP/1.1
+[2026-04-30 22:27:50] [127.0.0.1:63227] Request received  | 2026-04-30 22:27:50.681045 | GET http://www.bing.com/ HTTP/1.1
+[2026-04-30 22:27:50] Connection from 127.0.0.1:63229
+[2026-04-30 22:27:50] [127.0.0.1:63225] Full request:
+GET http://www.google.com/ HTTP/1.1
+Host: www.google.com
+Connection: close
+
+[2026-04-30 22:27:50] [127.0.0.1:63226] Full request:
+GET http://www.example.com/ HTTP/1.1
+Host: www.example.com
+Connection: close
+
+[2026-04-30 22:27:50] [127.0.0.1:63228] Request received  | 2026-04-30 22:27:50.682567 | GET http://www.github.com/ HTTP/1.1
+[2026-04-30 22:27:50] [127.0.0.1:63227] Full request:
+GET http://www.bing.com/ HTTP/1.1
+Host: www.bing.com
+Connection: close
+
+[2026-04-30 22:27:50] [127.0.0.1:63226] Cache HIT | http://www.example.com:80/
+683586 | GET http://www.wikipedia.org/ HTTP/1.1
+[2026-04-30 22:27:50] [127.0.0.1:63225] Cache HIT | http://www.google.com:80/
+[2026-04-30 22:27:50] [127.0.0.1:63227] Cache HIT | http://www.bing.com:80/
+[2026-04-30 22:27:50] [127.0.0.1:63228] Full request:
+GET http://www.github.com/ HTTP/1.1
+Host: www.github.com
+Connection: close
+
+[2026-04-30 22:27:50] [127.0.0.1:63226] Response sent from cache | http://www.example.com:80/
+[2026-04-30 22:27:50] [127.0.0.1:63229] Full request:
+GET http://www.wikipedia.org/ HTTP/1.1
+Host: www.wikipedia.org
+Connection: close
+
+[2026-04-30 22:27:50] [127.0.0.1:63227] Response sent from cache | http://www.bing.com:80/
+[2026-04-30 22:27:50] [127.0.0.1:63225] Response sent from cache | http://www.google.com:80/
+[2026-04-30 22:27:50] [127.0.0.1:63228] Cache HIT | http://www.github.com:80/
+[2026-04-30 22:27:50] [127.0.0.1:63226] Connection closed
+[2026-04-30 22:27:50] [127.0.0.1:63229] Cache HIT | http://www.wikipedia.org:80/
+[2026-04-30 22:27:50] [127.0.0.1:63227] Connection closed
+[2026-04-30 22:27:50] [127.0.0.1:63225] Connection closed
+[2026-04-30 22:27:50] [127.0.0.1:63229] Response sent from cache | http://www.wikipedia.org:80/
+[2026-04-30 22:27:50] [127.0.0.1:63228] Response sent from cache | http://www.github.com:80/
+[2026-04-30 22:27:50] [127.0.0.1:63229] Connection closed
+[2026-04-30 22:27:50] [127.0.0.1:63228] Connection closed
+[2026-04-30 22:32:52] Connection from 127.0.0.1:65140
+[2026-04-30 22:32:52] [127.0.0.1:65140] Request received  | 2026-04-30 22:32:52.403373 | GET http://facebook..com/ HTTP/1.1
+[2026-04-30 22:32:52] [127.0.0.1:65140] Full request:
+GET http://facebook..com/ HTTP/1.1
+Host: facebook..com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 22:32:52] [127.0.0.1:65140] Cache MISS        | 2026-04-30 22:32:52.408382 | http://facebook..com:80/
+[2026-04-30 22:32:52] [127.0.0.1:65140] Request forwarded | 2026-04-30 22:32:52.411527 | GET http://facebook..com:80/
+[2026-04-30 22:32:52] [127.0.0.1:65140] Could not reach facebook..com: [Errno 11001] getaddrinfo failed
+[2026-04-30 22:32:52] [127.0.0.1:65140] Connection closed
+[2026-04-30 22:32:58] Connection from 127.0.0.1:65161
+[2026-04-30 22:32:58] [127.0.0.1:65161] Request received  | 2026-04-30 22:32:58.590440 | GET http://facebook.com/ HTTP/1.1
+[2026-04-30 22:32:58] [127.0.0.1:65161] Full request:
+GET http://facebook.com/ HTTP/1.1
+Host: facebook.com
+User-Agent: curl/8.18.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+
+[2026-04-30 22:32:58] [127.0.0.1:65161] BLOCKED HOST      | 2026-04-30 22:32:58.596443 | facebook.com
+[2026-04-30 22:32:58] [127.0.0.1:65161] Connection closed
+[2026-05-01 15:57:53] Proxy running on 0.0.0.0:3128
+[2026-05-01 15:57:53] Press Ctrl+C to stop.
+

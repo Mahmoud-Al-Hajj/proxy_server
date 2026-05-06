@@ -17,9 +17,11 @@ def fetch_from_server(host, port, method, path):
         f"Connection: close\r\n"
         f"\r\n"
     )
-
+    # Create a TCP socket (IPv4, TCP)
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # Connect to the target web server
     server_socket.connect((host, port))
+    # Send the HTTP request
     server_socket.sendall(request.encode())
 
     # Read the full response
@@ -33,7 +35,7 @@ def fetch_from_server(host, port, method, path):
     server_socket.close()
     return response
 
-
+# helper function to read data from source socket and send it to dest socket.
 def forward(source, destination):
     while True:
         data = source.recv(BUFFER_SIZE)
@@ -42,17 +44,24 @@ def forward(source, destination):
         destination.sendall(data)
 
 def tunnel(client_socket, host, port):
+    # Connect to target server
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.connect((host, port))
 
     # Tell the client the tunnel is ready
     client_socket.sendall(b"HTTP/1.0 200 Connection Established\r\n\r\n")
 
-    # One thread sends client → server, the other sends server → client
+    # Thread 1: client → server
     t1 = threading.Thread(target=forward, args=(client_socket, server_socket))
+     # Thread 2: server → client
     t2 = threading.Thread(target=forward, args=(server_socket, client_socket))
+
+
+    # Start both directions simultaneously
     t1.start()
     t2.start()
+    
+    # Wait for both to finish (connection closes)
     t1.join()
     t2.join()
 

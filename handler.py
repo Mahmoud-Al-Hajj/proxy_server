@@ -13,9 +13,18 @@ import metrics
 
 def handle_client(client_socket, client_address):
     """
-    Handle one client connection:
-    receive → filter → check cache → fetch if needed → relay response.
+    1. Accept connection
+    2. Apply IP filtering
+    3. Receive and parse request
+    4. Apply host filtering
+    5. Handle HTTPS tunnel if needed (CONNECT)
+    6. Check cache
+    7. Fetch from server if miss
+    8. Store in cache
+    9. Send response
+    10. Close connection
     """
+
     client_ip, client_port = client_address
     client_id = f"{client_ip}:{client_port}"
 
@@ -23,16 +32,20 @@ def handle_client(client_socket, client_address):
 
     try:
         Stats.record_request()
+
         if is_blocked_ip(client_ip):
             Stats.record_blocked()
             log(f"[{client_id}] BLOCKED IP | {datetime.datetime.now()} | connection refused")
+
             client_socket.sendall(BLOCK_RESPONSE)
             return
 
         data = client_socket.recv(BUFFER_SIZE)
+        
         if not data:
             return
 
+        # bytes → string
         request = data.decode('utf-8', errors='replace')
         request_line = request.split('\r\n')[0]
 
@@ -50,19 +63,21 @@ def handle_client(client_socket, client_address):
         if is_blocked_host(host):
             Stats.record_blocked()
             log(f"[{client_id}] BLOCKED HOST      | {datetime.datetime.now()} | {host}")
+
             client_socket.sendall(BLOCK_RESPONSE)
             return
 
-        # ── HTTPS TUNNEL ───────────────────────────────
+        #  HTTPS TUNNEL (CONNECT method)
+        # If client requests HTTPS, create tunnel instead of caching
         if method == 'CONNECT':
             log(f"[{client_id}] CONNECT tunnel    | {host}:{port}")
             tunnel(client_socket, host, port)
             return
 
-        url = f"http://{host}:{port}{path}"
+        url = f"http://{host}:{port}{path}" # url for cache key
    
       
-        # ── CACHE CHECK ────────────────────────────────
+        # ── CACHE CHECK ──────────────────────────────
         t_start = time.time()
         cached_response = cache.get(url)
 
@@ -81,12 +96,13 @@ def handle_client(client_socket, client_address):
 
 
         # ── FETCH FROM SERVER ──────────────────────────
+        # server response time
         t_start = time.time()
         try:
             response = fetch_from_server(host, port, method, path)
         except Exception as e:
             log(f"[{client_id}] Could not reach {host}: {e}")
-            client_socket.sendall(b"HTTP/1.0 502 Bad Gateway\r\n\r\nBad Gateway\r\n")
+            client_socket.sendall(b"502 Bad Gateway\r\n\r\nBad Gateway\r\n")
             return
 
         elapsed_ms = (time.time() - t_start) * 1000

@@ -103,16 +103,16 @@ class AdminHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    #Disable default HTTP server logging
     def log_message(self, format, *args):
         pass
 
     def do_GET(self):
-        # Login page — always accessible
         if self.path == '/login':
             self.send_login_page()
             return
 
-        # Everything else requires a valid session cookie
+        # Everything requires a valid session cookie
         if not self.is_authenticated():
             self.send_response(302)
             self.send_header('Location', '/login')
@@ -132,19 +132,20 @@ class AdminHandler(BaseHTTPRequestHandler):
             self.end_headers()
 
     def do_POST(self):
+              # Read request body
         length = int(self.headers.get('Content-Length', 0))
         body   = self.rfile.read(length).decode('utf-8')
 
-        # Login form submission — no session required
         if self.path == '/login':
-            # Parse form body: "password=admin123"
+            # Extract password from form data
             password = ''
             for part in body.split('&'):
                 if part.startswith('password='):
                     password = part[len('password='):]
-
+            # Validate password
             if password == ADMIN_PASSWORD:
                 token = create_session()
+                # Set session cookie and redirect to dashboard
                 self.send_response(302)
                 self.send_header('Set-Cookie', f'admin_session={token}; Path=/; HttpOnly')
                 self.send_header('Location', '/')
@@ -161,7 +162,8 @@ class AdminHandler(BaseHTTPRequestHandler):
             return
 
         data = json.loads(body) if body.strip().startswith('{') else {}
-
+        
+# API Routes
         if self.path == '/api/cache/clear':
             cache.clear()
             self.json_response({'ok': True, 'message': 'Cache cleared'})
@@ -184,6 +186,7 @@ class AdminHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+# API endpoints
     def serve_stats(self):
         s = Stats.get()
         s['cache_size'] = cache.size()

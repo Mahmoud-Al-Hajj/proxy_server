@@ -10,7 +10,12 @@ def is_blocked_ip(client_ip):
 
 
 def is_blocked_host(host):
-    return host in BLOCKED_HOSTS
+    with lock:
+        return host in blocked_hosts
+
+def is_blocked_host(host):
+    with lock:
+        return host in BLOCKED_HOSTS
 
 def add_blocked_host(host):
     """Add a host to the blacklist at runtime (from the admin panel)."""
@@ -27,4 +32,4 @@ def get_blocked_hosts():
 
 BLOCK_RESPONSE = (
     "403 Forbidden: This request has been blocked by the proxy.\r\n"
-).encode()
+).encode() # Convert string to bytes (required for socket.sendall)

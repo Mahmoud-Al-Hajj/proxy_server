@@ -7,8 +7,7 @@ cacheStore = {}
 # key   → URL
 # value → { response, timestamp, last_used }
 
-
-# Note: with lock means only one thread can run this part of code, others wait
+# Lock ensures thread-safe access since multiple clients (threads)
 lock = threading.Lock()
 
 CACHE_TTL = config.CACHE_TTL
@@ -25,6 +24,7 @@ def get(url):
     3. Update last_used (LRU behavior)
     4. Return response
     """
+# Note: with lock means only one thread can run this part of code, others wait
     with lock:
         entry = cacheStore.get(url)
         if not entry:
@@ -33,6 +33,7 @@ def get(url):
         now = time.time()
 
         # Check expiration
+        # If current time - stored time > TTL → expired
         if now - entry['timestamp'] > CACHE_TTL:
             cacheStore.pop(url, None)
             return None
@@ -67,7 +68,7 @@ def store(url, response):
 
             # Find the least recently used entry manually
             lru_url = None
-            oldest_time = float('inf')  # Initialize to infinity; any real timestamp will be smaller
+            oldest_time = float('inf') # Start with a very large number so any real timestamp is smaller
             
             for key, value in cacheStore.items():
                 if value['last_used'] < oldest_time:
